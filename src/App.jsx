@@ -1,122 +1,82 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from './assets/vite.svg'
-import heroImg from './assets/hero.png'
-import './App.css'
+import { BrowserRouter, Navigate, Route, Routes, useParams } from 'react-router-dom'
 
-function App() {
-  const [count, setCount] = useState(0)
+import AdminLayout from '@/layouts/admin-layout'
+import CustomerLayout from '@/layouts/customer-layout'
+import StaffLayout from '@/layouts/staff-layout'
 
-  return (
-    <>
-      <section id="center">
-        <div className="hero">
-          <img src={heroImg} className="base" width="170" height="179" alt="" />
-          <img src={reactLogo} className="framework" alt="React logo" />
-          <img src={viteLogo} className="vite" alt="Vite logo" />
-        </div>
-        <div>
-          <h1>Get started</h1>
-          <p>
-            Edit <code>src/App.jsx</code> and save to test <code>HMR</code>
-          </p>
-        </div>
-        <button
-          type="button"
-          className="counter"
-          onClick={() => setCount((count) => count + 1)}
-        >
-          Count is {count}
-        </button>
-      </section>
+import AdminCoupons from '@/pages/admin/coupons'
+import AdminCustomers from '@/pages/admin/customers'
+import AdminDashboard from '@/pages/admin/dashboard'
+import AdminInventory from '@/pages/admin/inventory'
+import AdminStaff from '@/pages/admin/staff'
 
-      <div className="ticks"></div>
+import CustomerAuth from '@/pages/customer/auth'
+import CustomerCategory from '@/pages/customer/category'
+import CustomerCheckoutPayment from '@/pages/customer/checkout-payment'
+import CustomerCheckoutReview from '@/pages/customer/checkout-review'
+import CustomerCheckoutShipping from '@/pages/customer/checkout-shipping'
+import CustomerCustomRequest, { CustomerBespokeStudio } from '@/pages/customer/custom-request'
+import CustomerHome from '@/pages/customer/home'
+import CustomerProduct from '@/pages/customer/product'
+import CustomerSubscription from '@/pages/customer/subscription'
+import CustomerVisualMenu from '@/pages/customer/visual-menu'
 
-      <section id="next-steps">
-        <div id="docs">
-          <svg className="icon" role="presentation" aria-hidden="true">
-            <use href="/icons.svg#documentation-icon"></use>
-          </svg>
-          <h2>Documentation</h2>
-          <p>Your questions, answered</p>
-          <ul>
-            <li>
-              <a href="https://vite.dev/" target="_blank">
-                <img className="logo" src={viteLogo} alt="" />
-                Explore Vite
-              </a>
-            </li>
-            <li>
-              <a href="https://react.dev/" target="_blank">
-                <img className="button-icon" src={reactLogo} alt="" />
-                Learn more
-              </a>
-            </li>
-          </ul>
-        </div>
-        <div id="social">
-          <svg className="icon" role="presentation" aria-hidden="true">
-            <use href="/icons.svg#social-icon"></use>
-          </svg>
-          <h2>Connect with us</h2>
-          <p>Join the Vite community</p>
-          <ul>
-            <li>
-              <a href="https://github.com/vitejs/vite" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#github-icon"></use>
-                </svg>
-                GitHub
-              </a>
-            </li>
-            <li>
-              <a href="https://chat.vite.dev/" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#discord-icon"></use>
-                </svg>
-                Discord
-              </a>
-            </li>
-            <li>
-              <a href="https://x.com/vite_js" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#x-icon"></use>
-                </svg>
-                X.com
-              </a>
-            </li>
-            <li>
-              <a href="https://bsky.app/profile/vite.dev" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#bluesky-icon"></use>
-                </svg>
-                Bluesky
-              </a>
-            </li>
-          </ul>
-        </div>
-      </section>
+import StaffChat from '@/pages/staff/chat'
+import StaffDashboard from '@/pages/staff/dashboard'
+import StaffLogistics from '@/pages/staff/logistics'
+import StaffOrders from '@/pages/staff/orders'
+import StaffRequests from '@/pages/staff/requests'
 
-      <div className="ticks"></div>
-      <section id="spacer"></section>
-    </>
-  )
+function LegacyCustomerProductRedirect() {
+  const { productId } = useParams()
+  return <Navigate to={`/c/product/${productId ?? ''}`} replace />
 }
 
-export default App
+export default function App() {
+  return (
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Navigate to="/c" replace />} />
+
+        <Route path="/c" element={<CustomerLayout />}>
+          <Route index element={<CustomerHome />} />
+          <Route path="category/:categoryId" element={<CustomerCategory />} />
+          <Route path="product/:productId" element={<CustomerProduct />} />
+          <Route path="p/:productId" element={<LegacyCustomerProductRedirect />} />
+          <Route path="menu" element={<CustomerVisualMenu />} />
+          <Route path="subscription" element={<CustomerSubscription />} />
+          <Route path="auth" element={<CustomerAuth />} />
+          <Route path="custom" element={<CustomerCustomRequest />} />
+          <Route path="custom/studio" element={<CustomerBespokeStudio />} />
+          <Route
+            path="checkout"
+            element={<Navigate to="/c/checkout/shipping" replace />}
+          />
+          <Route path="checkout/shipping" element={<CustomerCheckoutShipping />} />
+          <Route path="checkout/payment" element={<CustomerCheckoutPayment />} />
+          <Route path="checkout/review" element={<CustomerCheckoutReview />} />
+        </Route>
+
+        <Route path="/staff" element={<StaffLayout />}>
+          <Route index element={<Navigate to="/staff/dashboard" replace />} />
+          <Route path="dashboard" element={<StaffDashboard />} />
+          <Route path="chat" element={<StaffChat />} />
+          <Route path="orders" element={<StaffOrders />} />
+          <Route path="requests" element={<StaffRequests />} />
+          <Route path="logistics" element={<StaffLogistics />} />
+        </Route>
+
+        <Route path="/admin" element={<AdminLayout />}>
+          <Route index element={<Navigate to="/admin/dashboard" replace />} />
+          <Route path="dashboard" element={<AdminDashboard />} />
+          <Route path="staff" element={<AdminStaff />} />
+          <Route path="inventory" element={<AdminInventory />} />
+          <Route path="coupons" element={<AdminCoupons />} />
+          <Route path="customers" element={<AdminCustomers />} />
+        </Route>
+
+        <Route path="*" element={<Navigate to="/c" replace />} />
+      </Routes>
+    </BrowserRouter>
+  )
+}
