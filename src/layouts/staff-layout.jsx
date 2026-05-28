@@ -1,5 +1,6 @@
 import { NavLink, Outlet } from 'react-router-dom'
 import {
+  Bell,
   CircleHelp,
   Grid2X2,
   MessageSquare,
@@ -14,7 +15,8 @@ import { cn } from '@/lib/utils'
 const navItems = [
   { to: '/staff/dashboard', icon: Grid2X2, label: 'Dashboard' },
   { to: '/staff/orders', icon: Package, label: 'Orders' },
-  { to: '/staff/chat', icon: MessageSquare, label: 'Communication' },
+  { to: '/chat', icon: MessageSquare, label: 'Communication' },
+  { to: '/notifications', icon: Bell, label: 'Notifications' },
   { to: '/staff/requests', icon: Sparkles, label: 'Bespoke Requests' },
   { to: '/staff/logistics', icon: Truck, label: 'Logistics' },
 ]

@@ -24,6 +24,7 @@ import CustomerVisualMenu from '@/pages/customer/visual-menu'
 import StaffChat from '@/pages/staff/chat'
 import StaffDashboard from '@/pages/staff/dashboard'
 import StaffLogistics from '@/pages/staff/logistics'
+import StaffNotifications from '@/pages/staff/notifications'
 import StaffOrders from '@/pages/staff/orders'
 import StaffRequests from '@/pages/staff/requests'
 
@@ -60,15 +61,20 @@ export default function App() {
         <Route path="/staff" element={<StaffLayout />}>
           <Route index element={<Navigate to="/staff/dashboard" replace />} />
           <Route path="dashboard" element={<StaffDashboard />} />
-          <Route path="chat" element={<StaffChat />} />
+          <Route path="chat" element={<Navigate to="/chat" replace />} />
+          <Route path="notifications" element={<Navigate to="/notifications" replace />} />
           <Route path="orders" element={<StaffOrders />} />
           <Route path="requests" element={<StaffRequests />} />
           <Route path="logistics" element={<StaffLogistics />} />
         </Route>
 
+        <Route path="/chat" element={<StaffChat />} />
+        <Route path="/notifications" element={<StaffNotifications />} />
+
         <Route path="/admin" element={<AdminLayout />}>
           <Route index element={<Navigate to="/admin/dashboard" replace />} />
           <Route path="dashboard" element={<AdminDashboard />} />
+          <Route path="notifications" element={<Navigate to="/notifications" replace />} />
           <Route path="staff" element={<AdminStaff />} />
           <Route path="inventory" element={<AdminInventory />} />
           <Route path="coupons" element={<AdminCoupons />} />

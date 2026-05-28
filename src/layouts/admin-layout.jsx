@@ -1,4 +1,4 @@
-import { NavLink, Outlet } from 'react-router-dom'
+import { Link, NavLink, Outlet } from 'react-router-dom'
 import {
   BarChart3,
   Bell,
@@ -78,10 +78,10 @@ export default function AdminLayout() {
               <span className="text-sm">Kyiv LuxeBouquets administrative workspace</span>
             </div>
             <div className="ml-auto flex items-center gap-5">
-              <span className="relative">
+              <Link to="/notifications" className="relative" aria-label="Notifications">
                 <Bell className="h-5 w-5" strokeWidth={1.9} aria-hidden="true" />
                 <span className="absolute -right-1 -top-1 h-2 w-2 rounded-full bg-red-600" />
-              </span>
+              </Link>
               <span className="hidden text-sm font-semibold uppercase sm:inline">Admin User</span>
               <UserCircle className="h-7 w-7" strokeWidth={1.8} aria-hidden="true" />
             </div>
