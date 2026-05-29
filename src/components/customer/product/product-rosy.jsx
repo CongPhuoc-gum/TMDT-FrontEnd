@@ -5,6 +5,7 @@ import { EditorialFooter } from '@/components/luxe/editorial-footer'
 import { EditorialHeader } from '@/components/luxe/editorial-header'
 import { LuxeLabel } from '@/components/luxe/luxe-label'
 import { LuxePage } from '@/components/luxe/luxe-page'
+import { routes } from '@/config/routes'
 import { formatVnd } from '@/data/luxe-data'
 
 const addOns = [
@@ -32,28 +33,28 @@ const related = [
   {
     title: 'Rattan Grapefruit',
     price: '48$',
-    to: '/c/product/p-tulip-01',
+    to: routes.product('p-tulip-01'),
     image:
       'https://lh3.googleusercontent.com/aida-public/AB6AXuAD04ehoQPg-vdF8lWm4BhUeVEVqMQa_xm59vaud5OeBo1o-46yC3mzVr6X3tHqBSC1b3pkwa0TiB-N3ZBueu9Tao2Kt3Z0GDh05YRge9mBJoK6mRcAQhewuyGkjaJsgpctAvV8Gb9QH4zU7xnWNkyQ-AJrwgjompGwEeqGZP88793lplNNTR6axZ9BkcCvWqi1TWCLye7Df-taPtRQOwFJOD5zNzr8fA_Wqh_bK6404Jf2jMNjsWM6RjmsulaX1JzVIRwrEsFC0g',
   },
   {
     title: 'Lime & Matcha',
     price: '46$',
-    to: '/c/product/p-season-02',
+    to: routes.product('p-season-02'),
     image:
       'https://lh3.googleusercontent.com/aida-public/AB6AXuBRQNe46qvAMGgvHOXil3WZ6X_7AvHAcHlchYtNLwWhelmXrBWy9neQpO61o3FUTnhlVXn908tmkGpCHOQlSrym5fHMKywpmIuZC_zmA9LKKzBX7teDZebgAd_Ua_IfivvvkBM6rJkcmPW7dpoHYc-dLHQn3RFhL8JTwa4MADMTkRKFOJjwvqDdapFSL56nNzXgGG2-s5TzvmZrWUcInmRbEvduFh_gKlOWun55wbGsTa2GYmiEZqQYe-As_SjTgiCrQxhcXxGQOw',
   },
   {
     title: 'Cedar & Lavender',
     price: '64$',
-    to: '/c/product/p-orchid-01',
+    to: routes.product('p-orchid-01'),
     image:
       'https://lh3.googleusercontent.com/aida-public/AB6AXuCn9YKc0EgmR1YnM1OvlE3t_8o85PLJ2ySIzfTrVUhpvfhV-uqKwGPbejhBIncngoSJBMJPbIxdArwUOJ__jFJi-lqVVJnuvgRl6bl24PGXdDesMr6gB88uyrwOGjJFTRl0L--Ck7c68vT_ox8TBnCXjQspI2lwraNgmHEEINan5HjCWDgNS8XIrBvmvSynIj79HSvXa_PFm5cDj5vwu2ANdoS3XecNh_MVHEilQomLIwaDWRHrivf3qScG52lPBw5j7ssEzFvBGg',
   },
   {
     title: 'Ocean Mist',
     price: '58$',
-    to: '/c/product/p-season-01',
+    to: routes.product('p-season-01'),
     image:
       'https://lh3.googleusercontent.com/aida-public/AB6AXuCkELDdFjutOmqtPFMvEdLALSXUaMtVRXdZOlEaDAaUHIqUM6Buum1InM3rcsHdL67BI0HMLuz_gm_FGhafIajVmS2NEpHIHSBiwVeM2VM7o3uRzj-fqKLH76oKR4iwextxpJTZCwUwaor5JGP4djV2LkpHctIop8W5Snyl_vgvd0PGNKHVmHGZWgGdjKXk4rcExbzmirRpwu41bD4DPI7f7uPm1Lcx1Bzco27Ad9aM0eDyFpkqC2bF6Q9-3A-oF6T1xsfbHOTerA',
   },
@@ -89,7 +90,7 @@ export function ProductRosy({ product }) {
                 </button>
               </div>
               <Link
-                to="/c/checkout/shipping"
+                to={routes.checkout.shipping}
                 className="luxe-label flex h-12 min-w-52 items-center justify-center gap-4 bg-black px-8 text-white"
               >
                 Add to Basket <ArrowRight className="h-4 w-4" aria-hidden="true" />

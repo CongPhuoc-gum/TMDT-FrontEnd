@@ -1,7 +1,7 @@
 import { ChevronDown, ChevronLeft, ChevronRight, Eye, Filter, Pencil, Trash2 } from 'lucide-react'
 
 import { luxeImages } from '@/data/luxe-data'
-import { Label, StaffTopbar, StatusPill } from '@/pages/staff/staff-ui'
+import { Label, StaffTopbar, StatusPill } from '@/components/staff/staff-ui'
 
 const orders = [
   ['#LB-89230', 'Elena Volkova', 'Standard Delivery', 'White Elegance', 'Oct 24, 2023', 'Processing', 'light', luxeImages.ivory],

@@ -1,4 +1,5 @@
-import CheckoutShell, { CheckoutField } from '@/pages/customer/checkout-shell'
+import CheckoutShell, { CheckoutField } from '@/components/customer/checkout/checkout-shell'
+import { routes } from '@/config/routes'
 
 const methods = ['Card', 'Bank Transfer', 'Cash on Delivery']
 
@@ -7,7 +8,7 @@ export default function CustomerCheckoutReview() {
     <CheckoutShell
       activeStep="payment"
       heading="Payment"
-      backTo="/c/checkout/payment"
+      backTo={routes.checkout.payment}
       nextLabel="Place Order"
     >
       <div>

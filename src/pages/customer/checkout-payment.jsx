@@ -1,4 +1,5 @@
-import CheckoutShell, { CheckoutField } from '@/pages/customer/checkout-shell'
+import CheckoutShell, { CheckoutField } from '@/components/customer/checkout/checkout-shell'
+import { routes } from '@/config/routes'
 
 const deliveryWindows = ['09:00 - 12:00', '12:00 - 16:00', '16:00 - 20:00']
 
@@ -7,8 +8,8 @@ export default function CustomerCheckoutPayment() {
     <CheckoutShell
       activeStep="shipping"
       heading="Delivery Method"
-      backTo="/c/checkout/shipping"
-      nextTo="/c/checkout/review"
+      backTo={routes.checkout.shipping}
+      nextTo={routes.checkout.review}
       nextLabel="Continue to Payment"
     >
       <div className="grid gap-x-16 gap-y-12 md:grid-cols-2">

@@ -1,14 +1,16 @@
 import { Link, NavLink } from 'react-router-dom'
-import { MessageSquare, ShoppingBag, Sparkles, X } from 'lucide-react'
+import { MessageSquare, Sparkles } from 'lucide-react'
 
+import { EditorialHeader } from '@/components/luxe/editorial-header'
 import { appConfig } from '@/config/env'
+import { routes } from '@/config/routes'
 import { formatVnd, selectedCheckoutProduct } from '@/data/luxe-data'
 import { cn } from '@/lib/utils'
 
 const steps = [
-  { key: 'information', label: 'Information', to: '/c/checkout/shipping' },
-  { key: 'shipping', label: 'Shipping', to: '/c/checkout/payment' },
-  { key: 'payment', label: 'Payment', to: '/c/checkout/review' },
+  { key: 'information', label: 'Information', to: routes.checkout.shipping },
+  { key: 'shipping', label: 'Shipping', to: routes.checkout.payment },
+  { key: 'payment', label: 'Payment', to: routes.checkout.review },
 ]
 
 export function CheckoutField({ id, label, placeholder, className, type = 'text' }) {
@@ -37,7 +39,7 @@ function CheckoutProgress({ activeStep }) {
             className={({ isActive }) =>
               cn(
                 'luxe-label border-b pb-2 transition-colors hover:text-black',
-                (isActive || step.key === activeStep) ? 'border-black text-black' : 'border-transparent',
+                isActive || step.key === activeStep ? 'border-black text-black' : 'border-transparent',
               )
             }
           >
@@ -68,17 +70,17 @@ function OrderSummary({ framed = false }) {
         />
         <div className={cn(framed && 'mt-6 flex items-end justify-between')}>
           <div>
-            <h3 className="text-xl font-semibold">{framed ? 'Midnight Peony' : selectedCheckoutProduct.name}</h3>
-            <p className="luxe-serif mt-2 text-2xl text-[#444748]">{framed ? 'Large Bouquet' : 'Large Bouquet'}</p>
+            <h3 className="text-xl font-semibold">{selectedCheckoutProduct.name}</h3>
+            <p className="luxe-serif mt-2 text-2xl text-[#444748]">Large Bouquet</p>
           </div>
-          <p className="mt-8 text-xl">{framed ? '$125.00' : formatVnd(subtotal)}</p>
+          <p className="mt-8 text-xl">{formatVnd(subtotal)}</p>
         </div>
       </div>
 
       <div className="mt-10 border-t border-black/20 pt-8">
         <div className="flex justify-between py-3 text-lg">
           <span>Subtotal</span>
-          <span>{framed ? '$125.00' : formatVnd(subtotal)}</span>
+          <span>{formatVnd(subtotal)}</span>
         </div>
         <div className="flex justify-between py-3 text-lg">
           <span>Shipping</span>
@@ -94,14 +96,14 @@ function OrderSummary({ framed = false }) {
 
       <div className="mt-6 flex justify-between border-t border-black/20 pt-8 text-xl font-semibold">
         <span>Total</span>
-        <span className={cn(framed && 'luxe-serif text-4xl font-normal')}>{framed ? '$125.00' : formatVnd(total)}</span>
+        <span className={cn(framed && 'luxe-serif text-4xl font-normal')}>{formatVnd(total)}</span>
       </div>
 
       {!framed && (
         <div className="mt-14 border-l-2 border-black bg-[#f2dfd1]/45 p-8">
           <div className="flex items-center gap-3">
             <Sparkles className="h-5 w-5" aria-hidden="true" />
-            <span className="luxe-label">Florist's Note</span>
+            <span className="luxe-label">Florist&apos;s Note</span>
           </div>
           <p className="luxe-serif mt-6 text-2xl leading-8 text-[#6f6257]">
             Your bouquet will be hand-crafted and delivered in our signature sustainable luxury packaging.
@@ -116,29 +118,14 @@ export default function CheckoutShell({
   activeStep = 'information',
   heading,
   children,
-  backTo = '/c',
+  backTo = routes.home,
   nextTo,
   nextLabel = 'Continue',
   framedSummary = false,
 }) {
   return (
     <div className="luxe-home min-h-screen bg-[#fbf9f9] text-[#111]">
-      <header className="flex items-start justify-between px-6 py-8 lg:px-20">
-        <Link to="/c" className="luxe-serif text-5xl uppercase leading-none sm:text-7xl lg:text-8xl">
-          {framedSummary ? 'LuxeBouquets' : 'Kyiv LuxeBouquets'}
-        </Link>
-        <div className="flex items-center gap-8">
-          {!framedSummary && (
-            <Link to="/c" className="luxe-label hidden items-center gap-3 sm:flex">
-              <X className="h-4 w-4" aria-hidden="true" />
-              Back to Shop
-            </Link>
-          )}
-          <Link to="/c/checkout/shipping" aria-label="Cart">
-            <ShoppingBag className="h-5 w-5" aria-hidden="true" />
-          </Link>
-        </div>
-      </header>
+      <EditorialHeader variant="editorial" />
 
       <main className="grid gap-12 px-6 pb-28 pt-10 lg:grid-cols-[1fr_560px] lg:px-20">
         <section className="max-w-5xl">
@@ -182,18 +169,18 @@ export default function CheckoutShell({
       </Link>
 
       <footer className="flex flex-col justify-between gap-8 border-t border-black/15 px-6 py-12 text-sm text-[#444748] lg:flex-row lg:px-20">
-        <p>© 2024 Kyiv LuxeBouquets. Crafted for Elegance.</p>
+        <p>© 2024 {appConfig.name}. Crafted for Elegance.</p>
         <div className="flex gap-10">
-          <Link className="underline" to="/c">
+          <Link className="underline" to={routes.home}>
             Privacy Policy
           </Link>
-          <Link className="underline" to="/c">
+          <Link className="underline" to={routes.home}>
             Terms of Service
           </Link>
-          <Link className="underline" to="/c">
+          <Link className="underline" to={routes.checkout.shipping}>
             Shipping & Returns
           </Link>
-          <Link className="underline" to="/c">
+          <Link className="underline" to={routes.home}>
             Sustainability
           </Link>
         </div>

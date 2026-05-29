@@ -10,7 +10,7 @@ import {
   Truck,
 } from 'lucide-react'
 
-import { Label, StaffTopbar } from '@/pages/staff/staff-ui'
+import { Label, StaffTopbar } from '@/components/staff/staff-ui'
 
 const notifications = [
   {

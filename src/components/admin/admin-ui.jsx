@@ -1,21 +1,16 @@
-import { Bell, ChevronLeft, ChevronRight, Search, UserCircle } from 'lucide-react'
+import { ChevronLeft, ChevronRight } from 'lucide-react'
 
-export function AdminTopbar({ placeholder = 'Search analytics...', role = 'ADMIN USER' }) {
+import { PageHeader } from '@/components/shared/page-header'
+
+export function AdminTopbar({ placeholder = 'Search analytics...' }) {
   return (
-    <div className="flex h-20 items-center border-b border-neutral-300 px-6 sm:px-10">
-      <div className="flex h-12 w-full max-w-md items-center gap-3 bg-white px-5 text-neutral-500">
-        <Search className="h-5 w-5" strokeWidth={1.8} aria-hidden="true" />
-        <span className="text-sm sm:text-base">{placeholder}</span>
-      </div>
-      <div className="ml-auto hidden items-center gap-5 lg:flex">
-        <span className="relative">
-          <Bell className="h-5 w-5" strokeWidth={1.8} aria-hidden="true" />
-          <span className="absolute -right-1 -top-1 h-2 w-2 rounded-full bg-red-600" />
-        </span>
-        <span className="text-sm font-semibold uppercase">{role}</span>
-        <UserCircle className="h-7 w-7" strokeWidth={1.8} aria-hidden="true" />
-      </div>
-    </div>
+    <PageHeader
+      placeholder={placeholder}
+      className="border-neutral-300 px-6 sm:px-10"
+      searchWrapClassName="w-full max-w-md bg-white text-neutral-500"
+      inputClassName="h-full min-w-0 flex-1 bg-transparent text-sm outline-none placeholder:text-neutral-500 sm:text-base"
+      iconClassName="h-5 w-5 stroke-[1.8] sm:h-5 sm:w-5"
+    />
   )
 }
 
@@ -62,13 +57,19 @@ export function AdminTitle({ eyebrow, title, children, action }) {
 export function Pager() {
   return (
     <div className="flex items-center gap-3">
-      <button className="flex h-12 w-12 items-center justify-center border border-neutral-300 text-neutral-400">
+      <button type="button" className="flex h-12 w-12 items-center justify-center border border-neutral-300 text-neutral-400">
         <ChevronLeft className="h-5 w-5" aria-hidden="true" />
       </button>
-      <button className="flex h-12 w-12 items-center justify-center bg-black text-white">1</button>
-      <button className="flex h-12 w-12 items-center justify-center border border-neutral-300">2</button>
-      <button className="flex h-12 w-12 items-center justify-center border border-neutral-300">3</button>
-      <button className="flex h-12 w-12 items-center justify-center border border-neutral-300">
+      <button type="button" className="flex h-12 w-12 items-center justify-center bg-black text-white">
+        1
+      </button>
+      <button type="button" className="flex h-12 w-12 items-center justify-center border border-neutral-300">
+        2
+      </button>
+      <button type="button" className="flex h-12 w-12 items-center justify-center border border-neutral-300">
+        3
+      </button>
+      <button type="button" className="flex h-12 w-12 items-center justify-center border border-neutral-300">
         <ChevronRight className="h-5 w-5" aria-hidden="true" />
       </button>
     </div>

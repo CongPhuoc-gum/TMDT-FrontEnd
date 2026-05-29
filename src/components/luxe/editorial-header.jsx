@@ -1,48 +1,48 @@
 import { useState } from 'react'
-import { Link } from 'react-router-dom'
-import { Menu, ShoppingBag, X } from 'lucide-react'
+import { Link, NavLink } from 'react-router-dom'
+import { Menu, ShoppingBag, User2, X } from 'lucide-react'
 
-import { LuxeLabel } from '@/components/luxe/luxe-label'
 import { appConfig } from '@/config/env'
-import { editorialNavLinks, mobileNavLinks } from '@/data/luxe-data'
 import { cn } from '@/lib/utils'
+
+const primaryNavLinks = [
+  { label: 'Home', to: '/c', end: true },
+  { label: 'Shop', to: '/c/category/roses' },
+  { label: 'Custom', to: '/c/custom' },
+  { label: 'Subscription', to: '/c/subscription' },
+]
+
+const mobileNavLinks = [
+  ...primaryNavLinks,
+  { label: 'Visual Menu', to: '/c/menu' },
+  { label: 'Account', to: '/c/auth' },
+  { label: 'Checkout', to: '/c/checkout/shipping' },
+]
 
 const variants = {
   home: {
     fixed: true,
-    showDesktopNav: true,
-    showMobileMenu: true,
-    brandClass: 'luxe-serif absolute left-1/2 -translate-x-1/2 text-xl text-black sm:text-2xl',
-    shellClass: 'fixed left-0 top-0 z-50 flex h-14 w-full items-center justify-between border-b border-black/15 bg-[#f9f8f5]/86 px-5 backdrop-blur-md sm:h-16 lg:px-16',
+    shellClass: 'fixed left-0 top-0 z-50 w-full border-b border-black/15 bg-[#fbf9f9]/88 text-black backdrop-blur-md',
   },
   editorial: {
     sticky: true,
-    showMenuIcon: true,
-    brandClass: 'luxe-serif absolute left-1/2 -translate-x-1/2 text-xl text-black sm:text-2xl',
-    shellClass: 'relative z-20 border-b border-black/15 bg-[#fbf9f9]/92 backdrop-blur-md',
-    innerClass: 'flex h-16 items-center justify-between px-5 lg:px-16',
+    shellClass: 'sticky top-0 z-40 w-full border-b border-black/15 bg-[#fbf9f9]/94 text-black backdrop-blur-md',
   },
   prominent: {
     sticky: true,
-    showMenuIcon: true,
-    brandClass: 'luxe-serif absolute left-1/2 -translate-x-1/2 text-center text-4xl uppercase leading-none text-black sm:text-6xl lg:text-7xl',
-    shellClass: 'sticky top-0 z-40 border-b border-black/15 bg-[#fbf9f9]/92 backdrop-blur-md',
-    innerClass: 'flex h-20 items-center justify-between px-5 lg:px-16',
+    shellClass: 'sticky top-0 z-40 w-full border-b border-black/15 bg-[#fbf9f9]/94 text-black backdrop-blur-md',
   },
   product: {
-    brandClass: 'luxe-serif text-2xl text-black',
-    shellClass: 'border-b border-black/15 bg-[#fbf9f9]',
-    innerClass: 'flex h-16 items-center justify-between px-6 lg:px-16',
+    sticky: true,
+    shellClass: 'sticky top-0 z-40 w-full border-b border-black/15 bg-[#fbf9f9]/94 text-black backdrop-blur-md',
   },
   productLarge: {
-    brandClass: 'luxe-serif text-5xl uppercase leading-none text-black sm:text-6xl',
-    shellClass: 'border-b border-black/15 bg-[#fbf9f9]',
-    innerClass: 'flex h-20 items-center justify-between px-6 lg:px-16',
+    sticky: true,
+    shellClass: 'sticky top-0 z-40 w-full border-b border-black/15 bg-[#fbf9f9]/94 text-black backdrop-blur-md',
   },
   productCentered: {
-    brandClass: 'luxe-serif absolute left-1/2 -translate-x-1/2 uppercase tracking-[0.18em] text-2xl text-black',
-    shellClass: 'border-b border-black/15 bg-[#fbf9f9]',
-    innerClass: 'relative flex h-16 items-center justify-between px-6 lg:px-16',
+    sticky: true,
+    shellClass: 'sticky top-0 z-40 w-full border-b border-black/15 bg-[#fbf9f9]/94 text-black backdrop-blur-md',
   },
 }
 
@@ -82,94 +82,61 @@ function MobileOverlay({ open, onClose }) {
 export function EditorialHeader({ variant = 'editorial' }) {
   const [menuOpen, setMenuOpen] = useState(false)
   const config = variants[variant] ?? variants.editorial
-  const isHome = variant === 'home'
 
-  const NavTag = config.fixed || config.sticky ? 'nav' : 'header'
-  const shellProps = config.fixed ? {} : {}
+  const HeaderTag = config.fixed || config.sticky ? 'nav' : 'header'
 
-  const content = (
-    <>
-          <div className="flex items-center gap-8">
-            {config.showDesktopNav &&
-              editorialNavLinks.map(({ label, to }) => (
-                <Link key={to} className="luxe-label hidden transition-opacity hover:opacity-60 md:block" to={to}>
-                  {label}
-                </Link>
-              ))}
-
-            {config.showMobileMenu && (
-              <button
-                className="flex h-10 w-10 items-center justify-center transition-opacity hover:opacity-60 md:hidden"
-                type="button"
-                aria-label="Open navigation"
-                onClick={() => setMenuOpen(true)}
-              >
-                <Menu className="h-4 w-4" aria-hidden="true" />
-              </button>
-            )}
-
-            {config.showMenuIcon && (
-              <Link className="flex items-center gap-3 transition-opacity hover:opacity-60" to="/c">
-                <Menu className="h-5 w-5" aria-hidden="true" />
-                <LuxeLabel>{variant === 'prominent' ? 'Menu' : 'Shop'}</LuxeLabel>
-              </Link>
-            )}
-
-            {(variant === 'product' || variant === 'productLarge') && (
-              <>
-                {editorialNavLinks.map(({ label, to }) => (
-                  <Link key={to} className="luxe-label hidden transition-opacity hover:opacity-60 md:block" to={to}>
-                    {label}
-                  </Link>
-                ))}
-                {variant === 'productLarge' && (
-                  <button className="hidden items-center gap-3 md:flex" type="button" aria-label="Menu">
-                    <Menu className="h-5 w-5" aria-hidden="true" />
-                  </button>
-                )}
-              </>
-            )}
-          </div>
-
-          <Link to="/c" className={config.brandClass} aria-label={`${appConfig.name} home`}>
-            {appConfig.name}
-          </Link>
-
-          <div className="flex items-center gap-3 sm:gap-6">
-            {variant !== 'productLarge' && (
-              <Link className="luxe-label hidden transition-opacity hover:opacity-60 md:block" to="/c/auth">
-                Sign in
-              </Link>
-            )}
-            <Link
-              className={cn(
-                'flex items-center gap-2 transition-opacity hover:opacity-60',
-                isHome && 'h-10 px-1',
-              )}
-              to="/c/checkout/shipping"
-              aria-label="Open cart"
-            >
-              {isHome && <span className="luxe-label hidden sm:inline">[ 00 ]</span>}
-              {variant === 'product' && <LuxeLabel className="hidden md:inline">Cart</LuxeLabel>}
-              <ShoppingBag className="h-4 w-4 sm:h-5 sm:w-5" aria-hidden="true" />
-            </Link>
-          </div>
-        </>
-  )
+  const navLinkClass = ({ isActive }) =>
+    cn(
+      'luxe-label border-b border-transparent pb-1 text-black/64 transition-colors hover:border-black/35 hover:text-black',
+      isActive && 'border-black text-black',
+    )
 
   return (
     <>
-      {config.innerClass ? (
-        <NavTag className={config.shellClass} {...shellProps}>
-          <div className={config.innerClass}>{content}</div>
-        </NavTag>
-      ) : (
-        <NavTag className={config.shellClass} {...shellProps}>
-          {content}
-        </NavTag>
-      )}
+      <HeaderTag className={config.shellClass} aria-label="Customer navigation">
+        <div className="grid h-16 grid-cols-[1fr_auto_1fr] items-center px-5 sm:h-[4.5rem] lg:px-16">
+          <div className="flex items-center gap-7">
+            <button
+              className="flex h-10 w-10 items-center justify-center border border-black/15 transition-colors hover:bg-black hover:text-white md:hidden"
+              type="button"
+              aria-label="Open navigation"
+              onClick={() => setMenuOpen(true)}
+            >
+              <Menu className="h-4 w-4" aria-hidden="true" />
+            </button>
 
-      {isHome && <MobileOverlay open={menuOpen} onClose={() => setMenuOpen(false)} />}
+            <div className="hidden items-center gap-7 md:flex">
+              {primaryNavLinks.map(({ label, to, end }) => (
+                <NavLink key={to} to={to} end={end} className={navLinkClass}>
+                  {label}
+                </NavLink>
+              ))}
+            </div>
+          </div>
+
+          <Link
+            to="/c"
+            className="luxe-serif text-center text-2xl leading-none text-black transition-opacity hover:opacity-70 sm:text-3xl"
+            aria-label={`${appConfig.name} home`}
+          >
+            {appConfig.name}
+          </Link>
+
+          <div className="flex items-center justify-end gap-3 sm:gap-5">
+            <Link className="luxe-label hidden transition-opacity hover:opacity-60 md:block" to="/c/menu">
+              Menu
+            </Link>
+            <Link className="hidden transition-opacity hover:opacity-60 sm:block" to="/c/auth" aria-label="Account">
+              <User2 className="h-5 w-5" aria-hidden="true" />
+            </Link>
+            <Link className="transition-opacity hover:opacity-60" to="/c/checkout/shipping" aria-label="Open cart">
+              <ShoppingBag className="h-5 w-5" aria-hidden="true" />
+            </Link>
+          </div>
+        </div>
+      </HeaderTag>
+
+      <MobileOverlay open={menuOpen} onClose={() => setMenuOpen(false)} />
     </>
   )
 }

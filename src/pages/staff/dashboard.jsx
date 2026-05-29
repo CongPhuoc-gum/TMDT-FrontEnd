@@ -1,7 +1,7 @@
 import { Calendar, CheckCircle2, ClipboardList, Truck } from 'lucide-react'
 
 import { luxeImages } from '@/data/luxe-data'
-import { Label, StaffTopbar } from '@/pages/staff/staff-ui'
+import { Label, StaffTopbar } from '@/components/staff/staff-ui'
 
 const tasks = [
   {

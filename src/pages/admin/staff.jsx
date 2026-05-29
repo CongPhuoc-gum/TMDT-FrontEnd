@@ -1,7 +1,7 @@
 import { UserPlus } from 'lucide-react'
 
 import { luxeImages } from '@/data/luxe-data'
-import { AdminMetric, AdminPage, AdminTitle } from './admin-ui'
+import { AdminMetric, AdminPage, AdminTitle } from '@/components/admin/admin-ui'
 
 const members = [
   {

@@ -1,11 +1,12 @@
-import CheckoutShell, { CheckoutField } from '@/pages/customer/checkout-shell'
+import CheckoutShell, { CheckoutField } from '@/components/customer/checkout/checkout-shell'
+import { routes } from '@/config/routes'
 
 export default function CustomerCheckoutShipping() {
   return (
     <CheckoutShell
       activeStep="information"
       heading="Shipping Details"
-      nextTo="/c/checkout/payment"
+      nextTo={routes.checkout.payment}
       nextLabel="Continue to Shipping"
       framedSummary
     >

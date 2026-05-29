@@ -1,6 +1,6 @@
 import { Calendar, CheckCircle, ChevronLeft, ChevronRight, PlusCircle } from 'lucide-react'
 
-import { AdminPage, AdminTitle } from './admin-ui'
+import { AdminPage, AdminTitle } from '@/components/admin/admin-ui'
 
 const coupons = [
   { code: 'SUMMER_BLOOM', note: 'Created June 12, 2023', discount: '15%', usage: '1,240', expiry: 'Sep 30, 2023', active: true },

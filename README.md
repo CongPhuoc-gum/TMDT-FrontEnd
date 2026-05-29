@@ -1,51 +1,53 @@
 # Kyiv LuxeBouquets — Frontend
 
-React + Vite storefront prototype (customer, staff, admin) with editorial luxe UI.
+React + Vite storefront (customer, staff, admin).
 
-## Setup
+## Quick start
 
 ```bash
 npm install
-cp .env.example .env.local   # optional — override any value from committed `.env`
 npm run dev
 ```
 
-App runs at [http://localhost:5173](http://localhost:5173).
+- App: http://localhost:5173  
+- Env: copy `.env.example` → `.env.local` to override API URL, brand name, etc.
 
-## Environment
+If `npm run dev` fails with **EPERM** on Windows:
 
-| Variable | Description | Default |
-|----------|-------------|---------|
-| `VITE_APP_NAME` | Brand name | `Kyiv LuxeBouquets` |
-| `VITE_APP_TAGLINE` | Short tagline | `Floral Atelier` |
-| `VITE_API_BASE_URL` | REST API base | `http://localhost:8080/api` |
-| `VITE_API_TIMEOUT_MS` | Fetch timeout | `15000` |
-| `VITE_ENABLE_MOCK_DATA` | Use local mock catalog | `true` |
-| `VITE_STAFF_CHAT_PATH` | Concierge route | `/staff/chat` |
-| `VITE_DEFAULT_LOCALE` | `Intl` locale | `vi-VN` |
-| `VITE_CURRENCY` | Currency code | `VND` |
+```bash
+npm run dev:clean
+```
 
-Read values in code via `import { appConfig } from '@/config/env'` or `import { apiFetch } from '@/lib/api'`.
+Vite cache is stored in the system temp folder (not in the repo) to reduce file-lock issues.
 
-**Do not commit** `.env.local` (secrets / machine-specific URLs).
+## Project layout
+
+```
+src/
+  components/
+    admin/          # Admin shared UI (metrics, pager, …)
+    staff/          # Staff shared UI (topbar, status pills)
+    customer/       # Customer sections (home, category, product, checkout)
+    luxe/           # Editorial design system
+    shared/         # Cross-role primitives (page header)
+    ui/             # Form controls (button, input, label)
+  config/
+    env.js          # VITE_* variables
+    routes.js       # Path helpers
+  data/
+    luxe-data.js    # Mock catalog & formatters
+  layouts/          # Route shells
+  lib/              # api, utils
+  pages/            # Route entry components only
+public/
+  favicon.svg
+```
 
 ## Scripts
 
 | Command | Description |
 |---------|-------------|
-| `npm run dev` | Development server |
+| `npm run dev` | Dev server |
+| `npm run dev:clean` | Clear local cache folders, then dev |
 | `npm run build` | Production build |
-| `npm run preview` | Preview production build |
-| `npm run lint` | ESLint |
-| `npm run clean` | Remove `.vite-cache`, `dist`, `node_modules/.vite` |
-
-If `npm run dev` fails with `EPERM` on Windows, run `npm run clean` and try again.
-
-## Structure
-
-- `src/pages/customer` — storefront & checkout
-- `src/pages/staff` — operations console
-- `src/pages/admin` — back office
-- `src/components/luxe` — shared editorial UI
-- `src/data/luxe-data.js` — mock catalog & helpers
-- `src/config/env.js` — typed env access
+| `npm run clean` | Remove `dist`, `.vite-cache`, `node_modules/.vite` |

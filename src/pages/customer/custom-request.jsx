@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom'
-import { Calendar, Check, ImagePlus, Menu, MessageSquare, ShoppingBag } from 'lucide-react'
+import { Calendar, Check, ImagePlus, MessageSquare } from 'lucide-react'
 
+import { EditorialHeader } from '@/components/luxe/editorial-header'
 import { luxeImages } from '@/data/luxe-data'
 
 const palette = [
@@ -20,39 +21,6 @@ const tonalImages = [
   luxeImages.spring,
   luxeImages.autumn,
 ]
-
-function BespokeHeader({ centered = false }) {
-  return (
-    <header
-      className={
-        centered
-          ? 'grid h-20 grid-cols-[1fr_auto_1fr] items-center border-b border-neutral-300 px-8 text-black'
-          : 'flex h-20 items-center justify-between px-8 text-black sm:px-20'
-      }
-    >
-      <Link to="/c/menu" aria-label="Open menu">
-        <Menu className="h-5 w-5" strokeWidth={1.7} />
-      </Link>
-      <Link to="/c" className={centered ? 'luxe-serif text-3xl uppercase' : 'luxe-serif text-2xl uppercase tracking-[0.18em]'}>
-        {centered ? 'Kyiv LuxeBouquets' : 'LuxeBouquets'}
-      </Link>
-      <nav className="ml-auto hidden items-center gap-10 text-xs font-semibold uppercase sm:flex">
-        <Link to="/c/category/roses">Shop All</Link>
-        <Link to="/c/custom" className="border-b border-black pb-1">
-          Bespoke
-        </Link>
-        <Link to="/c">Story</Link>
-        <ShoppingBag className="h-5 w-5" aria-hidden="true" />
-      </nav>
-      {!centered ? (
-        <div className="flex items-center gap-6 sm:hidden">
-          <ShoppingBag className="h-5 w-5" aria-hidden="true" />
-          <Menu className="h-5 w-5" aria-hidden="true" />
-        </div>
-      ) : null}
-    </header>
-  )
-}
 
 function UploadBox({ compact = false }) {
   return (
@@ -81,7 +49,7 @@ function UploadBox({ compact = false }) {
 function EditorialRequest() {
   return (
     <main className="luxe-home min-h-screen bg-[#fbfaf8] text-black">
-      <BespokeHeader />
+      <EditorialHeader variant="editorial" />
 
       <section className="px-8 pb-20 pt-8 sm:px-20">
         <div className="max-w-3xl">
@@ -177,7 +145,7 @@ function EditorialRequest() {
 function StudioRequest() {
   return (
     <main className="luxe-home min-h-screen bg-[#fbfaf8] text-black">
-      <BespokeHeader centered />
+      <EditorialHeader variant="editorial" />
 
       <section className="grid min-h-[calc(100vh-5rem)] lg:grid-cols-2">
         <div className="relative order-2 min-h-[560px] overflow-hidden bg-neutral-200 lg:order-1">

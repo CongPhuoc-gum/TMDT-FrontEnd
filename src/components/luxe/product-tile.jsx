@@ -1,13 +1,14 @@
 import { Link } from 'react-router-dom'
 
 import { LuxeLabel } from '@/components/luxe/luxe-label'
+import { routes } from '@/config/routes'
 import { formatVnd } from '@/data/luxe-data'
 import { cn } from '@/lib/utils'
 
 export function ProductTile({ product, className, showPrice = false }) {
   return (
     <Link
-      to={`/c/product/${product.id}`}
+      to={routes.product(product.id)}
       className={cn('group relative block overflow-hidden bg-[#e4e2e2]', className)}
     >
       <img
