@@ -9,7 +9,7 @@ import {
 } from 'lucide-react'
 
 import { luxeImages } from '@/data/luxe-data'
-import { Label, StaffTopbar, StatusPill } from '@/pages/staff/staff-ui'
+import { Label, StaffTopbar, StatusPill } from '@/components/staff/staff-ui'
 
 const schedule = [
   ['09:00 AM', 'Peony Elegance', '#ORD-7721', 'Elena V. | Pechersk District', 'Assembling', 'dark', luxeImages.ivory],

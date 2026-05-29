@@ -1,7 +1,7 @@
 import { Image, Mail, MapPin, MoreVertical, Phone, PlusCircle, Send, Video } from 'lucide-react'
 
 import { luxeImages } from '@/data/luxe-data'
-import { Label, StaffTopbar } from '@/pages/staff/staff-ui'
+import { Label, StaffTopbar } from '@/components/staff/staff-ui'
 
 const chats = [
   ['Elena Voloshyna', 'Sent a photo of her living room...', '2m ago', true],

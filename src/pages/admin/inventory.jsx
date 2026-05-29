@@ -1,7 +1,7 @@
 import { Eye, MoreVertical, Plus, Trash2, X } from 'lucide-react'
 
 import { luxeImages } from '@/data/luxe-data'
-import { AdminMetric, AdminPage, AdminTopbar, Pager } from './admin-ui'
+import { AdminMetric, AdminPage, AdminTopbar, Pager } from '@/components/admin/admin-ui'
 
 const inventoryRows = [
   {

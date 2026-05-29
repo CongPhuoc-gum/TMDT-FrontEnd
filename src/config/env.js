@@ -17,7 +17,7 @@ export const appConfig = {
   apiBaseUrl: raw.VITE_API_BASE_URL ?? 'http://localhost:8080/api',
   apiTimeoutMs: readNumber(raw.VITE_API_TIMEOUT_MS, 15000),
   enableMockData: readBoolean(raw.VITE_ENABLE_MOCK_DATA, true),
-  staffChatPath: raw.VITE_STAFF_CHAT_PATH ?? '/staff/chat',
+  staffChatPath: raw.VITE_STAFF_CHAT_PATH ?? '/chat',
   customerHomePath: raw.VITE_CUSTOMER_HOME_PATH ?? '/c',
   defaultLocale: raw.VITE_DEFAULT_LOCALE ?? 'vi-VN',
   currency: raw.VITE_CURRENCY ?? 'VND',

@@ -1,6 +1,4 @@
-import { Link } from 'react-router-dom'
-import { Menu, Minus } from 'lucide-react'
-
+import { EditorialHeader } from '@/components/luxe/editorial-header'
 import { luxeImages } from '@/data/luxe-data'
 
 export default function CustomerVisualMenu() {
@@ -11,16 +9,9 @@ export default function CustomerVisualMenu() {
         <div className="absolute inset-0 bg-white/70" />
       </div>
 
-      <header className="relative z-10 flex h-24 items-center justify-between px-8 sm:px-16">
-        <Link to="/c" className="luxe-serif text-3xl uppercase">
-          LuxeBouquets
-        </Link>
-        <Link to="/c/subscription" className="flex items-center gap-5 text-sm uppercase">
-          Menu
-          <Minus className="h-6 w-6" strokeWidth={1} aria-hidden="true" />
-          <Menu className="h-5 w-5" strokeWidth={1.5} aria-hidden="true" />
-        </Link>
-      </header>
+      <div className="relative z-10">
+        <EditorialHeader variant="editorial" />
+      </div>
 
       <section className="relative z-10 flex min-h-[58vh] items-center justify-center px-6 text-center">
         <div className="max-w-4xl">

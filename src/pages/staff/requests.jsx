@@ -1,7 +1,7 @@
 import { Bell, Image, Printer, Search, Share2, UserCircle } from 'lucide-react'
 
 import { luxeImages } from '@/data/luxe-data'
-import { Label } from '@/pages/staff/staff-ui'
+import { Label } from '@/components/staff/staff-ui'
 
 const queue = [
   ['Eleanor Vance', 'New Request', '2h ago', luxeImages.dried],

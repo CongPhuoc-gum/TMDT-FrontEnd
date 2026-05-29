@@ -1,7 +1,7 @@
 import { ArrowRight, Users } from 'lucide-react'
 
 import { luxeImages } from '@/data/luxe-data'
-import { AdminMetric, AdminPage, AdminTopbar } from './admin-ui'
+import { AdminMetric, AdminPage, AdminTopbar } from '@/components/admin/admin-ui'
 
 const favorites = [
   { name: 'Peony Paradise', sold: '428 Units Sold', image: luxeImages.ivory, tag: '#1 BEST SELLER' },

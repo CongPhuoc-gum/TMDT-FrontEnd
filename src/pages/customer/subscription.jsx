@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom'
-import { ArrowRight, Menu, ShoppingBag } from 'lucide-react'
+import { ArrowRight, ShoppingBag } from 'lucide-react'
 
+import { EditorialHeader } from '@/components/luxe/editorial-header'
 import { luxeImages } from '@/data/luxe-data'
 
 const plans = [
@@ -30,24 +31,6 @@ const plans = [
     action: 'Select Luxe',
   },
 ]
-
-function Header() {
-  return (
-    <header className="sticky top-0 z-30 grid h-16 grid-cols-[1fr_auto_1fr] border-b border-neutral-300 bg-[#fbfaf8] px-6">
-      <nav className="hidden items-center gap-8 text-xs sm:flex">
-        <Link to="/c/category/roses">Shop All</Link>
-        <Link to="/c/subscription">Flower Meanings</Link>
-      </nav>
-      <Link to="/c" className="luxe-serif self-center text-3xl uppercase">
-        Kyiv LuxeBouquets
-      </Link>
-      <div className="flex items-center justify-end gap-8 text-xs uppercase">
-        <Link to="/c/menu">Menu</Link>
-        <Menu className="h-4 w-4" aria-hidden="true" />
-      </div>
-    </header>
-  )
-}
 
 function Plan({ plan }) {
   return (
@@ -81,7 +64,7 @@ function Plan({ plan }) {
 export default function CustomerSubscription() {
   return (
     <main className="luxe-home min-h-screen bg-[#fbfaf8] text-black">
-      <Header />
+      <EditorialHeader variant="editorial" />
 
       <section className="relative grid min-h-[360px] border-b border-neutral-300 lg:grid-cols-[1fr_430px]">
         <div className="flex items-center justify-center px-6 py-16 text-center">
