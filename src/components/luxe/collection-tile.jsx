@@ -19,7 +19,7 @@ export function CollectionTile({ item }) {
         className="luxe-image h-full w-full object-cover"
       />
       <div className="absolute inset-0 bg-black/15 transition-colors duration-500 group-hover:bg-black/30" />
-      <div className="absolute bottom-5 left-5 right-5 z-10 text-white sm:bottom-6 sm:left-6">
+      <div className="absolute bottom-5 left-5 right-5 z-10 translate-y-3 text-white opacity-0 transition-all duration-300 group-hover:translate-y-0 group-hover:opacity-100 sm:bottom-6 sm:left-6">
         <LuxeLabel className="mb-1 block text-white/85">{item.eyebrow}</LuxeLabel>
         <h3 className="luxe-serif text-3xl leading-tight sm:text-4xl">{item.title}</h3>
       </div>
