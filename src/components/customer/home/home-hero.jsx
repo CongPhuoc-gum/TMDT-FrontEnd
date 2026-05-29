@@ -28,11 +28,6 @@ export function HomeHero() {
         ))}
       </div>
 
-      <div className="absolute bottom-10 left-5 z-20 text-white sm:left-10 lg:left-16">
-        <h1 className="luxe-serif max-w-[9ch] text-5xl leading-[0.9] sm:text-7xl lg:text-8xl">
-          Artistic Floristry.
-        </h1>
-      </div>
     </section>
   )
 }
