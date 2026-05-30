@@ -5,10 +5,10 @@ import { LuxeLabel } from '@/components/luxe/luxe-label'
 import { homeFooterGroups } from '@/data/luxe-data'
 
 const compactLinks = [
-  { label: 'Privacy Policy', to: '/c' },
-  { label: 'Terms of Service', to: '/c' },
-  { label: 'Shipping & Returns', to: '/c' },
-  { label: 'Sustainability', to: '/c' },
+  { label: 'Privacy Policy', to: '/c/privacy-policy' },
+  { label: 'Terms of Service', to: '/c/terms-of-service' },
+  { label: 'Shipping & Returns', to: '/c/shipping-returns' },
+  { label: 'Sustainability', to: '/c/sustainability' },
 ]
 
 export function EditorialFooter({ variant = 'home' }) {
@@ -56,9 +56,9 @@ export function EditorialFooter({ variant = 'home' }) {
           <div>
             <LuxeLabel>Policies</LuxeLabel>
             <div className="mt-6 grid gap-3 text-base">
-              <Link to="/c/checkout/shipping">Shipping Policy</Link>
-              <Link to="/c">Terms of Service</Link>
-              <Link to="/c">Privacy Policy</Link>
+              <Link to="/c/shipping-returns">Shipping Policy</Link>
+              <Link to="/c/terms-of-service">Terms of Service</Link>
+              <Link to="/c/privacy-policy">Privacy Policy</Link>
             </div>
           </div>
           <p className="text-base">© 2024 Kyiv LuxeBouquets. Crafted for Elegance.</p>
@@ -131,7 +131,7 @@ export function EditorialFooter({ variant = 'home' }) {
             {[Globe2, Camera].map((Icon, index) => (
               <Link
                 key={Icon.displayName ?? index}
-                to="/c"
+                to={index === 0 ? '/c' : '/c/contact'}
                 className="flex h-10 w-10 items-center justify-center border border-black/15 transition-colors hover:bg-black hover:text-white"
                 aria-label={index === 0 ? 'Website' : 'Instagram'}
               >

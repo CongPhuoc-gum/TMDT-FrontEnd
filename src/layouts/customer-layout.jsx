@@ -92,6 +92,7 @@ export default function CustomerLayout() {
     location.pathname.startsWith('/c/checkout/') ||
     location.pathname.startsWith('/c/product/') ||
     location.pathname.startsWith('/c/custom') ||
+    ['/c/about', '/c/floral-care', '/c/shipping-returns', '/c/contact', '/c/faq', '/c/privacy-policy', '/c/terms-of-service', '/c/sustainability'].includes(location.pathname) ||
     location.pathname === '/c/menu' ||
     location.pathname === '/c/subscription' ||
     location.pathname === '/c/auth'

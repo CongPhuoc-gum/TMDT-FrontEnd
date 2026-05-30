@@ -313,19 +313,19 @@ export const homeFooterGroups = [
   {
     title: 'Navigation',
     links: [
-      { label: 'Our Story', to: '/c/custom' },
+      { label: 'Our Story', to: '/c/about' },
       { label: 'The Collections', to: '/c/category/roses' },
-      { label: 'Floral Care', to: '/c/category/tulips' },
-      { label: 'Shipping & Returns', to: '/c/checkout/shipping' },
+      { label: 'Floral Care', to: '/c/floral-care' },
+      { label: 'Shipping & Returns', to: '/c/shipping-returns' },
     ],
   },
   {
     title: 'Support',
     links: [
-      { label: 'Contact Us', to: '/c/custom' },
-      { label: 'FAQ', to: '/c/auth' },
-      { label: 'Privacy Policy', to: '/c' },
-      { label: 'Terms of Service', to: '/c' },
+      { label: 'Contact Us', to: '/c/contact' },
+      { label: 'FAQ', to: '/c/faq' },
+      { label: 'Privacy Policy', to: '/c/privacy-policy' },
+      { label: 'Terms of Service', to: '/c/terms-of-service' },
     ],
   },
 ]

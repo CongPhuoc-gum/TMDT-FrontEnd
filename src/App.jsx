@@ -17,6 +17,7 @@ import CustomerCheckoutReview from '@/pages/customer/checkout-review'
 import CustomerCheckoutShipping from '@/pages/customer/checkout-shipping'
 import CustomerCustomRequest, { CustomerBespokeStudio } from '@/pages/customer/custom-request'
 import CustomerHome from '@/pages/customer/home'
+import CustomerInfoPage from '@/pages/customer/info'
 import CustomerProduct from '@/pages/customer/product'
 import CustomerSubscription from '@/pages/customer/subscription'
 import CustomerVisualMenu from '@/pages/customer/visual-menu'
@@ -46,6 +47,7 @@ export default function App() {
           <Route path="p/:productId" element={<LegacyCustomerProductRedirect />} />
           <Route path="menu" element={<CustomerVisualMenu />} />
           <Route path="subscription" element={<CustomerSubscription />} />
+          <Route path=":slug" element={<CustomerInfoPage />} />
           <Route path="auth" element={<CustomerAuth />} />
           <Route path="custom" element={<CustomerCustomRequest />} />
           <Route path="custom/studio" element={<CustomerBespokeStudio />} />
